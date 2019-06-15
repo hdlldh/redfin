@@ -2,10 +2,7 @@ import pandas as pd
 import datetime as dt
 from scrapy.crawler import CrawlerProcess
 from pandas.tseries.holiday import USFederalHolidayCalendar
-import sys
 
-sys.path.append('/Users/donglin/Dropbox/Workspace/redfin/')
-sys.path.append('/home/donglin/Dropbox/Workspace/redfin/')
 
 FedCal = USFederalHolidayCalendar()
 crnt_time = dt.datetime.now()

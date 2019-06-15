@@ -7,6 +7,7 @@
 
 import sqlite3
 import datetime as dt
+import os
 
 class RedfinPipeline(object):
     def process_item(self, item, spider):
@@ -18,7 +19,10 @@ class SQLiteStoreItemPipeline(object):
     def __init__(self):
 
         self.EventDate = dt.datetime.now().strftime('%Y-%m-%d')
-        self.file_name = './redfin/data/redfin_home_%s.db' % (dt.datetime.now().strftime('%Y%m%d'))
+        cur_path, _ = os.path.split(__file__)
+        root_path = os.path.dirname(cur_path)
+        self.file_name = os.path.join(root_path, 'redfin/data/redfin_home_%s.db' % (dt.datetime.now().strftime('%Y%m%d')))
+        print(self.file_name)
         self.conn = sqlite3.connect(self.file_name)
 
 

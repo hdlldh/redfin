@@ -3,14 +3,16 @@ import scrapy
 import pandas as pd
 import datetime as dt
 from io import BytesIO
+import os
 
 class RedfinSfHomeSpider(scrapy.Spider):
     name = 'redfin_sf_home'
     allowed_domains = ['redfin.com']
 
     def __init__(self):
-
-        ref_file = './redfin/region_id_map/redfin_sf_home.csv'
+        cur_path, _ = os.path.split(__file__)
+        root_path = os.path.dirname(cur_path)
+        ref_file = os.path.join(root_path,'region_id_map/redfin_sf_home.csv')
         df = pd.read_csv(ref_file, dtype=object)
         region_id_list = list(df['RegionId'])
 
